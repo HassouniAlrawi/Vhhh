@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر الخدمات الذكي</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        .store-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .service-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 48%;
+            text-align: center;
+        }
+        .service-card h3 {
+            color: #333;
+        }
+        .service-card p {
+            color: #666;
+        }
+        .buy-btn {
+            background-color: #25D366;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .buy-btn:hover {
+            background-color: #128C7E;
+        }
+    </style>
+</head>
+<body>
+    <div class="store-container">
+        <!-- الصف الأول -->
+        <div class="service-row">
+            <div class="service-card" data-price="300 الف" data-duration="3 أيام">
+                <h3>خدمة تصميم جرافيك</h3>
+                <p>تصميم احترافي لشعارات، بوسترات، وغيره</p>
+                <button class="buy-btn" onclick="buyService(this)">اشتري الآن</button>
+            </div>
+            <div class="service-card" data-price="500 ريال" data-duration="5 أيام">
+                <h3>خدمة تطوير ويب</h3>
+                <p>تصميم وتطوير مواقع الويب باحترافية</p>
+                <button class="buy-btn" onclick="buyService(this)">اشتري الآن</button>
+            </div>
+        </div>
+
+        <!-- الصف الثاني -->
+        <div class="service-row">
+            <div class="service-card" data-price="300 ريال" data-duration="2 أيام">
+                <h3>خدمة التسويق الإلكتروني</h3>
+                <p>إدارة حملات إعلانية على وسائل التواصل</p>
+                <button class="buy-btn" onclick="buyService(this)">اشتري الآن</button>
+            </div>
+            <div class="service-card" data-price="150 ريال" data-duration="24 ساعة">
+                <h3>خدمة كتابة المحتوى</h3>
+                <p>نصوص إبداعية لموقعك أو مدونتك</p>
+                <button class="buy-btn" onclick="buyService(this)">اشتري الآن</button>
+            </div>
+        </div>
+
+        <!-- الصف الثالث -->
+        <div class="service-row">
+            <div class="service-card" data-price="100 ريال" data-duration="48 ساعة">
+                <h3>خدمة الترجمة</h3>
+                <p>ترجمة دقيقة بمهنية عالية</p>
+                <button class="buy-btn" onclick="buyService(this)">اشتري الآن</button>
+            </div>
+            <div class="service-card" data-price="250 ريال" data-duration="4 أيام">
+                <h3>خدمة تعديل الفيديو</h3>
+                <p>مونتاج وتعديل الفيديوهات بجودة عالية</p>
+                <button class="buy-btn" onclick="buyService(this)">اشتري الآن</button>
+            </div>
+        </div>
+
+        <!-- الصف الرابع -->
+        <div class="service-row">
+            <div class="service-card" data-price="400 ريال" data-duration="3 أيام">
+                <h3>خدمة الاستشارات القانونية</h3>
+                <p>استشارات قانونية من متخصصين</p>
+                <button class="buy-btn" onclick="buyService(this)">اشتري الآن</button>
+            </div>
+            <div class="service-card" data-price="180 ريال" data-duration="12 ساعة">
+                <h3>خدمة الدعم الفني</h3>
+                <p>حلول سريعة للمشاكل التقنية</p>
+                <button class="buy-btn" onclick="buyService(this)">اشتري الآن</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function buyService(buttonElement) {
+            // الوصول إلى بطاقة الخدمة
+            const card = buttonElement.closest('.service-card');
+            
+            // جمع البيانات من البطاقة
+            const serviceName = card.querySelector('h3').textContent;
+            const description = card.querySelector('p').textContent;
+            const price = card.getAttribute('data-price') || 'غير محدد';
+            const duration = card.getAttribute('data-duration') || 'غير محدد';
+
+            // إنشاء رسالة واتساب مخصصة
+            const message = 
+                `🔖 *طلب خدمة جديدة* 🔖\n
+                *الخدمة:* ${serviceName}\n
+                *الوصف:* ${description}\n
+                *السعر:* ${price}\n
+                أريد الحصول على هذه الخدمة. الرجاء التواصل لتأكيد الطلب!`;
+
+            // رقم الواتساب (استبداله برقمك الفعلي)
+            const phoneNumber = "+96407718721380"; // مثال: رقم سعودي
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            
+            // فتح الواتساب
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
